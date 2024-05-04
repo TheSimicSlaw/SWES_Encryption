@@ -13,12 +13,19 @@ public class CharacterChainLink {
     return thisChar;
   }
 
-  public boolean modifyCharacter(Function<Integer, Integer> thisFunction) {
-    int test = thisChar;
-    if ((double) thisFunction.apply(test) % 1 != 0) {
+  public boolean modifyCharacter(Function<Double, Double> thisFunction) {
+    double test = thisFunction.apply((double) thisChar);
+    if (!isValidCharacter(test)) {
       return false;
     }
-    thisChar = (char) (thisFunction.apply((int) thisChar).intValue());
+    thisChar = (char) test;
+    return true;
+  }
+
+  public boolean isValidCharacter(double character) {
+    if (character < 0 || character > 127 || character % 1 != 0) {
+      return false;
+    }
     return true;
   }
 }

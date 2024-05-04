@@ -22,7 +22,20 @@ public class EncryptionTest {
   @Test
   public void modifyCharacterReturnsFalseForInvalidOptionDivide() {
     charChainLink = new CharacterChainLink('a');
-    charChainLink.modifyCharacter(c -> c - 2);
+    assertTrue(!charChainLink.modifyCharacter(c -> c / 2));
+  }
+
+  @Test
+  public void modifyCharacterReturns95For97Minus2() {
+    charChainLink = new CharacterChainLink('a');
+    assertTrue(charChainLink.modifyCharacter(c -> c - 2));
     assertEquals(95, (int) charChainLink.getCharacter());
+  }
+
+  @Test
+  public void modifyCharacterReturns99For97Plus2() {
+    charChainLink = new CharacterChainLink('a');
+    assertTrue(charChainLink.modifyCharacter(c -> c + 2));
+    assertEquals(99, (int) charChainLink.getCharacter());
   }
 }
