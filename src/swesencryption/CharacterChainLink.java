@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 public class CharacterChainLink {
   private char thisChar;
+  CharacterChainLink prevlink, nextLink;
 
   public CharacterChainLink(char character) {
     thisChar = character;
