@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="swesencryption.EncryptionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-05-04T05:05:51" hostname="SHALOMCHAVERIM" time="0.088">
+<testsuite name="swesencryption.EncryptionTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2024-05-18T01:49:47" hostname="SHALOMCHAVERIM" time="0.17">
   <properties/>
-  <testcase name="canary()" classname="swesencryption.EncryptionTest" time="0.075"/>
-  <testcase name="modifyCharacterReturnsFalseForInvalidOptionDivide()" classname="swesencryption.EncryptionTest" time="0.009"/>
+  <testcase name="createBlankChainInConstructorThrowsException()" classname="swesencryption.EncryptionTest" time="0.09"/>
+  <testcase name="blankCharacterChainGivesBlankString()" classname="swesencryption.EncryptionTest" time="0.003"/>
+  <testcase name="modifyCharacterReturns7For5Plus2()" classname="swesencryption.EncryptionTest" time="0.005"/>
+  <testcase name="canary()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="modifyCharacterReturnsFalseForInvalidOptionNegative()" classname="swesencryption.EncryptionTest" time="0.004"/>
+  <testcase name="characterChainIsCorrectForStringThisIsTheMessage()" classname="swesencryption.EncryptionTest" time="0.023"/>
+  <testcase name="characterChainIsCorrectForStringThisisthemessage()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="modifyCharacterReturns3For5Minus2()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="createBlankChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.003"/>
+  <testcase name="secondCreateChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="modifyCharacterReturnsFalseForInvalidOptionDivide()" classname="swesencryption.EncryptionTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

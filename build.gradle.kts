@@ -41,7 +41,7 @@ val test by tasks.getting(Test::class) {
 
 pmd {
     ruleSets = listOf()
-    ruleSetFiles = files("../conf/pmd/ruleset.xml")
+    ruleSetFiles = files("/conf/pmd/ruleset.xml")
     toolVersion = "7.0.0-rc4"
 }                                                
 

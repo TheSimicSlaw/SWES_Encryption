@@ -1,25 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CharacterChainLink.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SWES_Encryption</a> &gt; <a href="index.source.html" class="el_package">swesencryption</a> &gt; <span class="el_source">CharacterChainLink.java</span></div><h1>CharacterChainLink.java</h1><pre class="source lang-java linenums">package swesencryption;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CharacterChainLink.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SWES_Encryption</a> &gt; <a href="index.source.html" class="el_package">swesencryption</a> &gt; <span class="el_source">CharacterChainLink.java</span></div><h1>CharacterChainLink.java</h1><pre class="source lang-java linenums">package swesencryption; // Scrambleverse Warpworld Encryption System
 
 import java.util.function.Function;
 
 public class CharacterChainLink {
   private char thisChar;
+  private int thisCharValue;
+  CharacterChainLink prevlink, nextLink;
 
-<span class="fc" id="L8">  public CharacterChainLink(char character) {</span>
-<span class="fc" id="L9">    thisChar = character;</span>
-<span class="fc" id="L10">  }</span>
+<span class="fc" id="L10">  public CharacterChainLink(char character) {</span>
+<span class="fc" id="L11">    thisChar = character;</span>
+<span class="fc" id="L12">    setValue();</span>
+<span class="fc" id="L13">  }</span>
+
+  public void setValue() {
+<span class="fc" id="L16">    int thisCharAscii = (int) thisChar;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">    if (!Character.isLetter(thisChar)) {</span>
+<span class="fc" id="L18">      thisCharValue = 0;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">    } else if (thisCharAscii &gt;= 97) {</span>
+<span class="fc" id="L20">      thisCharValue = thisCharAscii - 96;</span>
+    } else {
+<span class="fc" id="L22">      thisCharValue = thisCharAscii - 64;</span>
+    }
+<span class="fc" id="L24">  }</span>
 
   public char getCharacter() {
-<span class="fc" id="L13">    return thisChar;</span>
+<span class="fc" id="L27">    return thisChar;</span>
   }
 
-  public boolean modifyCharacter(Function&lt;Integer, Integer&gt; thisFunction) {
-<span class="fc" id="L17">    int test = thisChar;</span>
-<span class="pc bpc" id="L18" title="1 of 2 branches missed.">    if ((double) thisFunction.apply(test) % 1 != 0) {</span>
-<span class="nc" id="L19">      return false;</span>
+  public boolean modifyCharacterValue(Function&lt;Double, Double&gt; thisFunction) { // change to modifyCharacterValue
+<span class="fc" id="L31">    double test = thisFunction.apply((double) thisCharValue);</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">    if (!isValidCharacter(test)) {</span>
+<span class="fc" id="L33">      return false;</span>
     }
-<span class="fc" id="L21">    thisChar = (char) (thisFunction.apply((int) thisChar).intValue());</span>
-<span class="fc" id="L22">    return true;</span>
+<span class="fc" id="L35">    thisChar = (char) test;</span>
+<span class="fc" id="L36">    return true;</span>
+  }
+
+  public boolean isValidCharacter(double character) {
+<span class="fc bfc" id="L40" title="All 4 branches covered.">    if (character &lt; 0 || character % 1 != 0) {</span>
+<span class="fc" id="L41">      return false;</span>
+    }
+<span class="fc" id="L43">    return true;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
