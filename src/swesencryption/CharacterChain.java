@@ -1,7 +1,7 @@
 package swesencryption;
 
 public class CharacterChain {
-  CharacterChainLink begin, end;
+  private CharacterChainLink begin, end;
 
   public CharacterChain() {
   }
@@ -60,5 +60,13 @@ public class CharacterChain {
       ccl = ccl.nextLink;
     } while (ccl != begin);
     return out;
+  }
+
+  public CharacterChainLink getBeginningLink() {
+    return begin;
+  }
+
+  public boolean isEndingLink(CharacterChainLink inlink) {
+    return inlink == end;
   }
 }

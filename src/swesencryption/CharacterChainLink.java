@@ -9,10 +9,10 @@ public class CharacterChainLink {
 
   public CharacterChainLink(char character) {
     thisChar = character;
-    setValue();
+    setValueAlphabet();
   }
 
-  public void setValue() {
+  public void setValueAlphabet() {
     int thisCharAscii = (int) thisChar;
     if (!Character.isLetter(thisChar)) {
       thisCharValue = 0;
