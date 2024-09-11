@@ -10,6 +10,7 @@ public class ChainKey {
 
   public ChainKey(CharacterChain incharacterchain) {
     keyMap = new HashMap<Character, ArrayList<CharacterChainLink>>();
+    keyCharacterList = new ArrayList<Character>();
 
     CharacterChainLink currentLink = incharacterchain.getBeginningLink();
     do {
@@ -39,7 +40,7 @@ public class ChainKey {
     }
   }
 
-  private int hoarePartition(int low, int high) {
+  private int hoarePartition(int low, int high) { // NOPMD
     selectAndPlaceMedianOfThreeAsPivot(low, high);
     int i = low - 1, j = high + 1;
     int pivotvalue = keyCharacterList.get(low);
@@ -72,5 +73,9 @@ public class ChainKey {
       pivot = high;
 
     Collections.swap(keyCharacterList, low, pivot);
+  }
+
+  public ArrayList<Character> getKeyCharacterList() {
+    return keyCharacterList;
   }
 }

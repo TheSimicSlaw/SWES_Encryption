@@ -1,11 +1,14 @@
 package swesencryption;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 public class EncryptionTest {
   CharacterChainLink charChainLink;
@@ -79,5 +82,49 @@ public class EncryptionTest {
   public void createBlankChainInConstructorThrowsException() {
     RuntimeException exception = assertThrows(RuntimeException.class, () -> new CharacterChain(""));
     assertEquals("You did not pass any text to createChain.", exception.getMessage());
+  }
+
+  @Test
+  public void abcdeGetBeginningLinkReturnsA() {
+    assertEquals('a', new CharacterChain("abcde").getBeginningLink().getCharacter());
+  }
+
+  @Test
+  public void beginningLinkIsConnectedToEnd() {
+    CharacterChain testChain = new CharacterChain("this is the message");
+    assertTrue(testChain.isEndingLink(testChain.getBeginningLink().prevlink));
+  }
+
+  @Test
+  public void endingLinkIsConnectedToBeginning() {
+    CharacterChain testChain = new CharacterChain("this is the message");
+    CharacterChainLink ccl = testChain.getBeginningLink();
+    for (int i = 0; i < 18; i++) {
+      ccl = ccl.nextLink;
+    }
+    assertTrue(testChain.isEndingLink(ccl) && testChain.getBeginningLink().equals(ccl.nextLink));
+  }
+
+  @Test
+  public void chainKeyCreatesCorrectKeyCharacterList() {
+    assertAll(
+        () -> assertTrue(new ArrayList<Character>(Arrays.asList('a', 'c', 'e', 'h', 'r', 's', 't'))
+            .equals(new ChainKey(new CharacterChain("characters")).getKeyCharacterList())),
+        () -> assertTrue(new ArrayList<Character>(Arrays.asList('a', 'e', 'g', 'h', 'i', 'm', 's', 't'))
+            .equals(new ChainKey(new CharacterChain("thisisthemessage")).getKeyCharacterList())),
+        () -> assertTrue(new ArrayList<Character>(Arrays.asList(' ', 'a', 'e', 'g', 'h', 'i', 'm', 's', 't'))
+            .equals(new ChainKey(new CharacterChain("this is the message")).getKeyCharacterList())),
+        () -> assertTrue(new ArrayList<Character>(Arrays.asList('e', 'l', 's', 'v'))
+            .equals(new ChainKey(new CharacterChain("sleeveless")).getKeyCharacterList())),
+        () -> assertTrue(new ArrayList<Character>(Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+            'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'))
+            .equals(new ChainKey(new CharacterChain("qwertyuiopasdfghjklzxcvbnm")).getKeyCharacterList())));
+
+  }
+
+  @Test
+  public void getScrambleChainReturnsScrambleChain() {
+    CharacterChain chain = new CharacterChain("this is the message");
+    assertEquals(chain, new ChainScrambler(chain).getScrambleChain());
   }
 }

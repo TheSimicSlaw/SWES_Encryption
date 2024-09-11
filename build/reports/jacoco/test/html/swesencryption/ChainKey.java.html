@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChainKey.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SWES_Encryption</a> &gt; <a href="index.source.html" class="el_package">swesencryption</a> &gt; <span class="el_source">ChainKey.java</span></div><h1>ChainKey.java</h1><pre class="source lang-java linenums">package swesencryption;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
+public class ChainKey {
+  private HashMap&lt;Character, ArrayList&lt;CharacterChainLink&gt;&gt; keyMap;
+  private ArrayList&lt;Character&gt; keyCharacterList;
+
+<span class="fc" id="L11">  public ChainKey(CharacterChain incharacterchain) {</span>
+<span class="fc" id="L12">    keyMap = new HashMap&lt;Character, ArrayList&lt;CharacterChainLink&gt;&gt;();</span>
+<span class="fc" id="L13">    keyCharacterList = new ArrayList&lt;Character&gt;();</span>
+
+<span class="fc" id="L15">    CharacterChainLink currentLink = incharacterchain.getBeginningLink();</span>
+    do {
+<span class="fc" id="L17">      keyCreationStep(currentLink);</span>
+<span class="fc" id="L18">      currentLink = currentLink.nextLink;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">    } while (!incharacterchain.isEndingLink(currentLink));</span>
+<span class="fc" id="L20">    keyCreationStep(currentLink);</span>
+<span class="fc" id="L21">    sortKeyCharacterList(0, keyCharacterList.size() - 1);</span>
+<span class="fc" id="L22">  }</span>
+
+  private void keyCreationStep(CharacterChainLink currentLink) {
+<span class="fc" id="L25">    char currentchar = currentLink.getCharacter();</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">    if (!keyMap.containsKey(currentchar)) {</span>
+<span class="fc" id="L27">      keyMap.put(currentchar, new ArrayList&lt;CharacterChainLink&gt;());</span>
+<span class="fc" id="L28">      keyCharacterList.add(currentchar);</span>
+    }
+<span class="fc" id="L30">    keyMap.get(currentchar).add(currentLink);</span>
+<span class="fc" id="L31">  }</span>
+
+  private void sortKeyCharacterList(int low, int high) {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">    if (low &lt; high) {</span>
+<span class="fc" id="L35">      int pivotindex = hoarePartition(low, high);</span>
+
+<span class="fc" id="L37">      sortKeyCharacterList(low, pivotindex);</span>
+
+<span class="fc" id="L39">      sortKeyCharacterList(pivotindex + 1, high);</span>
+    }
+<span class="fc" id="L41">  }</span>
+
+  private int hoarePartition(int low, int high) { // NOPMD
+<span class="fc" id="L44">    selectAndPlaceMedianOfThreeAsPivot(low, high);</span>
+<span class="fc" id="L45">    int i = low - 1, j = high + 1;</span>
+<span class="fc" id="L46">    int pivotvalue = keyCharacterList.get(low);</span>
+    while (true) {
+      do {
+<span class="fc" id="L49">        i++;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">      } while (keyCharacterList.get(i) &lt; pivotvalue);</span>
+
+      do {
+<span class="fc" id="L53">        j--;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">      } while (keyCharacterList.get(j) &gt; pivotvalue);</span>
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">      if (i &gt;= j)</span>
+<span class="fc" id="L57">        return j;</span>
+
+<span class="fc" id="L59">      Collections.swap(keyCharacterList, i, j);</span>
+    }
+  }
+
+  private void selectAndPlaceMedianOfThreeAsPivot(int low, int high) {
+<span class="fc" id="L64">    int mid = (low + high) / 2;</span>
+<span class="fc" id="L65">    int lowval = keyCharacterList.get(low), midval = keyCharacterList.get(mid), highval = keyCharacterList.get(high);</span>
+<span class="fc" id="L66">    int pivot = 0;</span>
+
+<span class="fc bfc" id="L68" title="All 6 branches covered.">    if ((lowval &lt; midval) ^ (lowval &lt; highval))</span>
+<span class="fc" id="L69">      pivot = low;</span>
+<span class="fc bfc" id="L70" title="All 6 branches covered.">    else if ((midval &lt; lowval) ^ (midval &lt; highval))</span>
+<span class="fc" id="L71">      pivot = mid;</span>
+    else
+<span class="fc" id="L73">      pivot = high;</span>
+
+<span class="fc" id="L75">    Collections.swap(keyCharacterList, low, pivot);</span>
+<span class="fc" id="L76">  }</span>
+
+  public ArrayList&lt;Character&gt; getKeyCharacterList() {
+<span class="fc" id="L79">    return keyCharacterList;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
