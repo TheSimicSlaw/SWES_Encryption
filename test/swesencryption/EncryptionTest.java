@@ -25,6 +25,18 @@ public class EncryptionTest {
   }
 
   @Test
+  public void setAlphaCharacterToNonAlphabetCharacterReturns0() {
+    assertAll(
+        () -> assertEquals(0, (new CharacterChainLink('#', true)).getCharValue()),
+        () -> assertEquals(0, (new CharacterChainLink('/', true)).getCharValue()),
+        () -> assertEquals(0, (new CharacterChainLink('}', true)).getCharValue()),
+        () -> assertEquals(0, (new CharacterChainLink('&', true)).getCharValue()),
+        () -> assertEquals(0, (new CharacterChainLink('.', true)).getCharValue()),
+        () -> assertEquals(0, (new CharacterChainLink(')', true)).getCharValue()),
+        () -> assertEquals(0, (new CharacterChainLink(' ', true)).getCharValue()));
+  }
+
+  @Test
   public void modifyCharacterReturnsFalseForInvalidOptionDivide() {
     charChainLink = new CharacterChainLink('a', false);
     assertTrue(!charChainLink.modifyCharacterValue(c -> c / 2));
