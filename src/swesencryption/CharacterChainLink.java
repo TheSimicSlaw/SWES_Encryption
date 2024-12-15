@@ -5,11 +5,21 @@ import java.util.function.Function;
 public class CharacterChainLink {
   private char thisChar;
   private int thisCharValue;
-  CharacterChainLink prevlink, nextLink;
+  CharacterChainLink prevlink, nextlink;
 
   public CharacterChainLink(char character) {
     thisChar = character;
-    setValueAlphabet();
+    // setValueAlphabet();
+    setValueASCII();
+  }
+
+  public CharacterChainLink(char character, boolean alpha) {
+    thisChar = character;
+    if (alpha) {
+      setValueAlphabet();
+    } else {
+      setValueASCII();
+    }
   }
 
   public void setValueAlphabet() {
@@ -23,8 +33,16 @@ public class CharacterChainLink {
     }
   }
 
+  private void setValueASCII() {
+    thisCharValue = (int) thisChar;
+  }
+
   public char getCharacter() {
     return thisChar;
+  }
+
+  public int getCharValue() {
+    return thisCharValue;
   }
 
   public boolean modifyCharacterValue(Function<Double, Double> thisFunction) { // change to modifyCharacterValue

@@ -15,7 +15,7 @@ public class CharacterChain {
 <span class="fc" id="L15">    checkLength(inText);</span>
 <span class="fc" id="L16">    begin = new CharacterChainLink(inText.charAt(0));</span>
 <span class="fc" id="L17">    end = new CharacterChainLink(inText.charAt(inText.length() - 1));</span>
-<span class="fc" id="L18">    end.nextLink = begin;</span>
+<span class="fc" id="L18">    end.nextlink = begin;</span>
 <span class="fc" id="L19">    begin.prevlink = end;</span>
 <span class="fc" id="L20">    fillChain(inText);</span>
 <span class="fc" id="L21">  }</span>
@@ -26,48 +26,51 @@ public class CharacterChain {
     }
 <span class="fc" id="L27">  }</span>
 
-  private void checkLength(String inText) {
+  private void checkLength(String inText) { // NOPMD
 <span class="fc bfc" id="L30" title="All 2 branches covered.">    if (inText.length() == 0) {</span>
 <span class="fc" id="L31">      throw new RuntimeException(&quot;You did not pass any text to createChain.&quot;);</span>
     }
-<span class="fc" id="L33">  }</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">    if (inText.length() == 1) {</span>
+<span class="fc" id="L34">      throw new RuntimeException(&quot;Cannot create Character Chain with only one character.&quot;);</span>
+    }
+<span class="fc" id="L36">  }</span>
 
   private void fillChain(String inText) {
-<span class="fc" id="L36">    int secondToLast = inText.length() - 2;</span>
-<span class="fc" id="L37">    CharacterChainLink ccl = begin;</span>
+<span class="fc" id="L39">    int secondToLast = inText.length() - 2;</span>
+<span class="fc" id="L40">    CharacterChainLink ccl = begin;</span>
     CharacterChainLink newccl;
-<span class="fc bfc" id="L39" title="All 2 branches covered.">    for (int i = 1; i &lt; secondToLast; i++) {</span>
-<span class="fc" id="L40">      newccl = new CharacterChainLink(inText.charAt(i));</span>
-<span class="fc" id="L41">      newccl.prevlink = ccl;</span>
-<span class="fc" id="L42">      ccl.nextLink = newccl;</span>
-<span class="fc" id="L43">      ccl = newccl;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    for (int i = 1; i &lt; secondToLast; i++) {</span>
+<span class="fc" id="L43">      newccl = new CharacterChainLink(inText.charAt(i));</span>
+<span class="fc" id="L44">      newccl.prevlink = ccl;</span>
+<span class="fc" id="L45">      ccl.nextlink = newccl;</span>
+<span class="fc" id="L46">      ccl = newccl;</span>
     }
-<span class="fc" id="L45">    newccl = new CharacterChainLink(inText.charAt(secondToLast));</span>
-<span class="fc" id="L46">    newccl.prevlink = ccl;</span>
-<span class="fc" id="L47">    ccl.nextLink = newccl;</span>
-<span class="fc" id="L48">    newccl.nextLink = end;</span>
-<span class="fc" id="L49">    end.prevlink = newccl;</span>
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L48">    newccl = new CharacterChainLink(inText.charAt(secondToLast));</span>
+<span class="fc" id="L49">    newccl.prevlink = ccl;</span>
+<span class="fc" id="L50">    ccl.nextlink = newccl;</span>
+<span class="fc" id="L51">    newccl.nextlink = end;</span>
+<span class="fc" id="L52">    end.prevlink = newccl;</span>
+<span class="fc" id="L53">  }</span>
 
   public String getChainText() {
-<span class="fc bfc" id="L53" title="All 2 branches covered.">    if (begin == null) {</span>
-<span class="fc" id="L54">      return &quot;&quot;;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (begin == null) {</span>
+<span class="fc" id="L57">      return &quot;&quot;;</span>
     }
-<span class="fc" id="L56">    String out = &quot;&quot;;</span>
-<span class="fc" id="L57">    CharacterChainLink ccl = begin;</span>
+<span class="fc" id="L59">    String out = &quot;&quot;;</span>
+<span class="fc" id="L60">    CharacterChainLink ccl = begin;</span>
     do {
-<span class="fc" id="L59">      out += ccl.getCharacter();</span>
-<span class="fc" id="L60">      ccl = ccl.nextLink;</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">    } while (ccl != begin);</span>
-<span class="fc" id="L62">    return out;</span>
+<span class="fc" id="L62">      out += ccl.getCharacter();</span>
+<span class="fc" id="L63">      ccl = ccl.nextlink;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">    } while (ccl != begin);</span>
+<span class="fc" id="L65">    return out;</span>
   }
 
   public CharacterChainLink getBeginningLink() {
-<span class="fc" id="L66">    return begin;</span>
+<span class="fc" id="L69">    return begin;</span>
   }
 
   public boolean isEndingLink(CharacterChainLink inlink) {
-<span class="fc bfc" id="L70" title="All 2 branches covered.">    return inlink == end;</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">    return inlink == end;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

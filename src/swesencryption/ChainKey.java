@@ -13,11 +13,18 @@ public class ChainKey {
     keyCharacterList = new ArrayList<Character>();
 
     CharacterChainLink currentLink = incharacterchain.getBeginningLink();
+
     do {
       keyCreationStep(currentLink);
-      currentLink = currentLink.nextLink;
+      currentLink = currentLink.nextlink;
     } while (!incharacterchain.isEndingLink(currentLink));
     keyCreationStep(currentLink);
+    // while (!incharacterchain.isEndingLink(currentLink)) {
+    // keyCreationStep(currentLink);
+    // currentLink = currentLink.nextLink;
+    // }
+    // keyCreationStep(currentLink);
+
     sortKeyCharacterList(0, keyCharacterList.size() - 1);
   }
 
@@ -77,5 +84,14 @@ public class ChainKey {
 
   public ArrayList<Character> getKeyCharacterList() {
     return keyCharacterList;
+  }
+
+  public ArrayList<ArrayList<CharacterChainLink>> getWorkableKey() {
+    ArrayList<ArrayList<CharacterChainLink>> workableKey = new ArrayList<ArrayList<CharacterChainLink>>();
+    for (Character keymember : keyCharacterList) {
+      workableKey.add(keyMap.get(keymember));
+    }
+
+    return workableKey;
   }
 }

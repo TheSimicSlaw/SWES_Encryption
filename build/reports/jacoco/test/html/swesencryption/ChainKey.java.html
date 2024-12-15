@@ -13,70 +13,86 @@ public class ChainKey {
 <span class="fc" id="L13">    keyCharacterList = new ArrayList&lt;Character&gt;();</span>
 
 <span class="fc" id="L15">    CharacterChainLink currentLink = incharacterchain.getBeginningLink();</span>
+
     do {
-<span class="fc" id="L17">      keyCreationStep(currentLink);</span>
-<span class="fc" id="L18">      currentLink = currentLink.nextLink;</span>
-<span class="fc bfc" id="L19" title="All 2 branches covered.">    } while (!incharacterchain.isEndingLink(currentLink));</span>
-<span class="fc" id="L20">    keyCreationStep(currentLink);</span>
-<span class="fc" id="L21">    sortKeyCharacterList(0, keyCharacterList.size() - 1);</span>
-<span class="fc" id="L22">  }</span>
+<span class="fc" id="L18">      keyCreationStep(currentLink);</span>
+<span class="fc" id="L19">      currentLink = currentLink.nextlink;</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">    } while (!incharacterchain.isEndingLink(currentLink));</span>
+<span class="fc" id="L21">    keyCreationStep(currentLink);</span>
+    // while (!incharacterchain.isEndingLink(currentLink)) {
+    // keyCreationStep(currentLink);
+    // currentLink = currentLink.nextLink;
+    // }
+    // keyCreationStep(currentLink);
+
+<span class="fc" id="L28">    sortKeyCharacterList(0, keyCharacterList.size() - 1);</span>
+<span class="fc" id="L29">  }</span>
 
   private void keyCreationStep(CharacterChainLink currentLink) {
-<span class="fc" id="L25">    char currentchar = currentLink.getCharacter();</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">    if (!keyMap.containsKey(currentchar)) {</span>
-<span class="fc" id="L27">      keyMap.put(currentchar, new ArrayList&lt;CharacterChainLink&gt;());</span>
-<span class="fc" id="L28">      keyCharacterList.add(currentchar);</span>
+<span class="fc" id="L32">    char currentchar = currentLink.getCharacter();</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">    if (!keyMap.containsKey(currentchar)) {</span>
+<span class="fc" id="L34">      keyMap.put(currentchar, new ArrayList&lt;CharacterChainLink&gt;());</span>
+<span class="fc" id="L35">      keyCharacterList.add(currentchar);</span>
     }
-<span class="fc" id="L30">    keyMap.get(currentchar).add(currentLink);</span>
-<span class="fc" id="L31">  }</span>
+<span class="fc" id="L37">    keyMap.get(currentchar).add(currentLink);</span>
+<span class="fc" id="L38">  }</span>
 
   private void sortKeyCharacterList(int low, int high) {
-<span class="fc bfc" id="L34" title="All 2 branches covered.">    if (low &lt; high) {</span>
-<span class="fc" id="L35">      int pivotindex = hoarePartition(low, high);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">    if (low &lt; high) {</span>
+<span class="fc" id="L42">      int pivotindex = hoarePartition(low, high);</span>
 
-<span class="fc" id="L37">      sortKeyCharacterList(low, pivotindex);</span>
+<span class="fc" id="L44">      sortKeyCharacterList(low, pivotindex);</span>
 
-<span class="fc" id="L39">      sortKeyCharacterList(pivotindex + 1, high);</span>
+<span class="fc" id="L46">      sortKeyCharacterList(pivotindex + 1, high);</span>
     }
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L48">  }</span>
 
   private int hoarePartition(int low, int high) { // NOPMD
-<span class="fc" id="L44">    selectAndPlaceMedianOfThreeAsPivot(low, high);</span>
-<span class="fc" id="L45">    int i = low - 1, j = high + 1;</span>
-<span class="fc" id="L46">    int pivotvalue = keyCharacterList.get(low);</span>
+<span class="fc" id="L51">    selectAndPlaceMedianOfThreeAsPivot(low, high);</span>
+<span class="fc" id="L52">    int i = low - 1, j = high + 1;</span>
+<span class="fc" id="L53">    int pivotvalue = keyCharacterList.get(low);</span>
     while (true) {
       do {
-<span class="fc" id="L49">        i++;</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">      } while (keyCharacterList.get(i) &lt; pivotvalue);</span>
+<span class="fc" id="L56">        i++;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">      } while (keyCharacterList.get(i) &lt; pivotvalue);</span>
 
       do {
-<span class="fc" id="L53">        j--;</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">      } while (keyCharacterList.get(j) &gt; pivotvalue);</span>
+<span class="fc" id="L60">        j--;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">      } while (keyCharacterList.get(j) &gt; pivotvalue);</span>
 
-<span class="fc bfc" id="L56" title="All 2 branches covered.">      if (i &gt;= j)</span>
-<span class="fc" id="L57">        return j;</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">      if (i &gt;= j)</span>
+<span class="fc" id="L64">        return j;</span>
 
-<span class="fc" id="L59">      Collections.swap(keyCharacterList, i, j);</span>
+<span class="fc" id="L66">      Collections.swap(keyCharacterList, i, j);</span>
     }
   }
 
   private void selectAndPlaceMedianOfThreeAsPivot(int low, int high) {
-<span class="fc" id="L64">    int mid = (low + high) / 2;</span>
-<span class="fc" id="L65">    int lowval = keyCharacterList.get(low), midval = keyCharacterList.get(mid), highval = keyCharacterList.get(high);</span>
-<span class="fc" id="L66">    int pivot = 0;</span>
+<span class="fc" id="L71">    int mid = (low + high) / 2;</span>
+<span class="fc" id="L72">    int lowval = keyCharacterList.get(low), midval = keyCharacterList.get(mid), highval = keyCharacterList.get(high);</span>
+<span class="fc" id="L73">    int pivot = 0;</span>
 
-<span class="fc bfc" id="L68" title="All 6 branches covered.">    if ((lowval &lt; midval) ^ (lowval &lt; highval))</span>
-<span class="fc" id="L69">      pivot = low;</span>
-<span class="fc bfc" id="L70" title="All 6 branches covered.">    else if ((midval &lt; lowval) ^ (midval &lt; highval))</span>
-<span class="fc" id="L71">      pivot = mid;</span>
+<span class="fc bfc" id="L75" title="All 6 branches covered.">    if ((lowval &lt; midval) ^ (lowval &lt; highval))</span>
+<span class="fc" id="L76">      pivot = low;</span>
+<span class="fc bfc" id="L77" title="All 6 branches covered.">    else if ((midval &lt; lowval) ^ (midval &lt; highval))</span>
+<span class="fc" id="L78">      pivot = mid;</span>
     else
-<span class="fc" id="L73">      pivot = high;</span>
+<span class="fc" id="L80">      pivot = high;</span>
 
-<span class="fc" id="L75">    Collections.swap(keyCharacterList, low, pivot);</span>
-<span class="fc" id="L76">  }</span>
+<span class="fc" id="L82">    Collections.swap(keyCharacterList, low, pivot);</span>
+<span class="fc" id="L83">  }</span>
 
   public ArrayList&lt;Character&gt; getKeyCharacterList() {
-<span class="fc" id="L79">    return keyCharacterList;</span>
+<span class="fc" id="L86">    return keyCharacterList;</span>
+  }
+
+  public ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt; getWorkableKey() {
+<span class="fc" id="L90">    ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt; workableKey = new ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt;();</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">    for (Character keymember : keyCharacterList) {</span>
+<span class="fc" id="L92">      workableKey.add(keyMap.get(keymember));</span>
+<span class="fc" id="L93">    }</span>
+
+<span class="fc" id="L95">    return workableKey;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

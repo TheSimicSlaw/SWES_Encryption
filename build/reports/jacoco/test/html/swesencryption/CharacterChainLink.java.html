@@ -5,42 +5,60 @@ import java.util.function.Function;
 public class CharacterChainLink {
   private char thisChar;
   private int thisCharValue;
-  CharacterChainLink prevlink, nextLink;
+  CharacterChainLink prevlink, nextlink;
 
 <span class="fc" id="L10">  public CharacterChainLink(char character) {</span>
 <span class="fc" id="L11">    thisChar = character;</span>
-<span class="fc" id="L12">    setValueAlphabet();</span>
-<span class="fc" id="L13">  }</span>
+    // setValueAlphabet();
+<span class="fc" id="L13">    setValueASCII();</span>
+<span class="fc" id="L14">  }</span>
+
+<span class="fc" id="L16">  public CharacterChainLink(char character, boolean alpha) {</span>
+<span class="fc" id="L17">    thisChar = character;</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">    if (alpha) {</span>
+<span class="fc" id="L19">      setValueAlphabet();</span>
+    } else {
+<span class="fc" id="L21">      setValueASCII();</span>
+    }
+<span class="fc" id="L23">  }</span>
 
   public void setValueAlphabet() {
-<span class="fc" id="L16">    int thisCharAscii = (int) thisChar;</span>
-<span class="fc bfc" id="L17" title="All 2 branches covered.">    if (!Character.isLetter(thisChar)) {</span>
-<span class="fc" id="L18">      thisCharValue = 0;</span>
-<span class="fc bfc" id="L19" title="All 2 branches covered.">    } else if (thisCharAscii &gt;= 97) {</span>
-<span class="fc" id="L20">      thisCharValue = thisCharAscii - 96;</span>
+<span class="fc" id="L26">    int thisCharAscii = (int) thisChar;</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">    if (!Character.isLetter(thisChar)) {</span>
+<span class="nc" id="L28">      thisCharValue = 0;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">    } else if (thisCharAscii &gt;= 97) {</span>
+<span class="fc" id="L30">      thisCharValue = thisCharAscii - 96;</span>
     } else {
-<span class="fc" id="L22">      thisCharValue = thisCharAscii - 64;</span>
+<span class="fc" id="L32">      thisCharValue = thisCharAscii - 64;</span>
     }
-<span class="fc" id="L24">  }</span>
+<span class="fc" id="L34">  }</span>
+
+  private void setValueASCII() {
+<span class="fc" id="L37">    thisCharValue = (int) thisChar;</span>
+<span class="fc" id="L38">  }</span>
 
   public char getCharacter() {
-<span class="fc" id="L27">    return thisChar;</span>
+<span class="fc" id="L41">    return thisChar;</span>
+  }
+
+  public int getCharValue() {
+<span class="fc" id="L45">    return thisCharValue;</span>
   }
 
   public boolean modifyCharacterValue(Function&lt;Double, Double&gt; thisFunction) { // change to modifyCharacterValue
-<span class="fc" id="L31">    double test = thisFunction.apply((double) thisCharValue);</span>
-<span class="fc bfc" id="L32" title="All 2 branches covered.">    if (!isValidCharacter(test)) {</span>
-<span class="fc" id="L33">      return false;</span>
+<span class="fc" id="L49">    double test = thisFunction.apply((double) thisCharValue);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">    if (!isValidCharacter(test)) {</span>
+<span class="fc" id="L51">      return false;</span>
     }
-<span class="fc" id="L35">    thisChar = (char) test;</span>
-<span class="fc" id="L36">    return true;</span>
+<span class="fc" id="L53">    thisChar = (char) test;</span>
+<span class="fc" id="L54">    return true;</span>
   }
 
   public boolean isValidCharacter(double character) {
-<span class="fc bfc" id="L40" title="All 4 branches covered.">    if (character &lt; 0 || character % 1 != 0) {</span>
-<span class="fc" id="L41">      return false;</span>
+<span class="fc bfc" id="L58" title="All 4 branches covered.">    if (character &lt; 0 || character % 1 != 0) {</span>
+<span class="fc" id="L59">      return false;</span>
     }
-<span class="fc" id="L43">    return true;</span>
+<span class="fc" id="L61">    return true;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -15,7 +15,7 @@ public class CharacterChain {
     checkLength(inText);
     begin = new CharacterChainLink(inText.charAt(0));
     end = new CharacterChainLink(inText.charAt(inText.length() - 1));
-    end.nextLink = begin;
+    end.nextlink = begin;
     begin.prevlink = end;
     fillChain(inText);
   }
@@ -26,9 +26,12 @@ public class CharacterChain {
     }
   }
 
-  private void checkLength(String inText) {
+  private void checkLength(String inText) { // NOPMD
     if (inText.length() == 0) {
       throw new RuntimeException("You did not pass any text to createChain.");
+    }
+    if (inText.length() == 1) {
+      throw new RuntimeException("Cannot create Character Chain with only one character.");
     }
   }
 
@@ -39,13 +42,13 @@ public class CharacterChain {
     for (int i = 1; i < secondToLast; i++) {
       newccl = new CharacterChainLink(inText.charAt(i));
       newccl.prevlink = ccl;
-      ccl.nextLink = newccl;
+      ccl.nextlink = newccl;
       ccl = newccl;
     }
     newccl = new CharacterChainLink(inText.charAt(secondToLast));
     newccl.prevlink = ccl;
-    ccl.nextLink = newccl;
-    newccl.nextLink = end;
+    ccl.nextlink = newccl;
+    newccl.nextlink = end;
     end.prevlink = newccl;
   }
 
@@ -57,7 +60,7 @@ public class CharacterChain {
     CharacterChainLink ccl = begin;
     do {
       out += ccl.getCharacter();
-      ccl = ccl.nextLink;
+      ccl = ccl.nextlink;
     } while (ccl != begin);
     return out;
   }
