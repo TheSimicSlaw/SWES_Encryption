@@ -273,6 +273,7 @@ public class EncryptionTest {
   @Test
   public void scrambleChainThrowsNoExceptions() {
     assertAll(
+        () -> assertDoesNotThrow(() -> (new ChainScrambler("honey")).scrambleChain()),
         () -> assertDoesNotThrow(() -> (new ChainScrambler("sleeveless")).scrambleChain()),
         () -> assertDoesNotThrow(() -> (new ChainScrambler("this is a test message")).scrambleChain()),
         () -> assertDoesNotThrow(() -> (new ChainScrambler("123abc!@# how's it goin', folks?")).scrambleChain()),
