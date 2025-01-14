@@ -72,4 +72,21 @@ public class CharacterChain {
   public boolean isEndingLink(CharacterChainLink inlink) {
     return inlink == end;
   }
+
+  public boolean isBeginningLink(CharacterChainLink inlink) {
+    return inlink == begin;
+  }
+
+  public void moveEndingLinkPointerForwards() {
+    end = end.nextlink;
+  }
+
+  public void moveBeginningLinkPointerBackwards() {
+    begin = begin.prevlink;
+  }
+
+  public void swapBeginningAndEndingLinkPointers() {
+    begin = begin.nextlink;
+    end = end.prevlink;
+  }
 }

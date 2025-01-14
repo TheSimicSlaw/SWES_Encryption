@@ -40,27 +40,44 @@ public class ChainScrambler {
 <span class="fc" id="L40">    }</span>
 <span class="fc" id="L41">  }</span>
 
-  private void transposeLink(CharacterChainLink currlink) {
+  private void transposeLink(CharacterChainLink currlink) { // NOPMD
 <span class="fc" id="L44">    CharacterChainLink swaplink = currlink;</span>
-<span class="fc" id="L45">    CharacterChainLink forelink = currlink.nextlink, aftlink = currlink.prevlink;</span>
+    CharacterChainLink forelink, aftlink;
 
-<span class="fc" id="L47">    int currlinkvalue = currlink.getCharValue();</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">    for (int i = 0; i &lt; currlinkvalue; i++) {</span>
-<span class="fc" id="L49">      swaplink = swaplink.nextlink;</span>
+    CharacterChainLink newforelink;
+
+<span class="fc" id="L49">    int currlinkvalue = currlink.getCharValue();</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">    for (int i = 0; i &lt; currlinkvalue; i++) {</span>
+<span class="fc" id="L51">      forelink = currlink.nextlink;</span>
+<span class="fc" id="L52">      swaplink = currlink.nextlink;</span>
+<span class="fc" id="L53">      aftlink = currlink.prevlink;</span>
+
+<span class="fc" id="L55">      newforelink = swaplink.nextlink;</span>
+
+<span class="fc" id="L57">      aftlink.nextlink = swaplink;</span>
+<span class="fc" id="L58">      swaplink.prevlink = aftlink;</span>
+
+      // aftlink.nextlink = forelink;
+      // forelink.prevlink = aftlink;
+
+<span class="fc" id="L63">      currlink.nextlink = newforelink;</span>
+<span class="fc" id="L64">      currlink.prevlink = swaplink;</span>
+
+<span class="fc" id="L66">      swaplink.nextlink = currlink;</span>
+<span class="fc" id="L67">      newforelink.prevlink = currlink;</span>
+
+<span class="fc bfc" id="L69" title="All 2 branches covered.">      if (chaintoscramble.isEndingLink(swaplink)) {</span>
+<span class="fc" id="L70">        chaintoscramble.moveEndingLinkPointerForwards();</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">      } else if (chaintoscramble.isBeginningLink(swaplink)) {</span>
+<span class="fc" id="L72">        chaintoscramble.moveBeginningLinkPointerBackwards();</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">      } else if (chaintoscramble.isBeginningLink(currlink)) {</span>
+<span class="fc" id="L74">        chaintoscramble.swapBeginningAndEndingLinkPointers();</span>
+      }
     }
-<span class="fc" id="L51">    CharacterChainLink newforelink = swaplink.nextlink;</span>
-
-<span class="fc" id="L53">    aftlink.nextlink = forelink;</span>
-<span class="fc" id="L54">    forelink.prevlink = aftlink;</span>
-
-<span class="fc" id="L56">    currlink.nextlink = newforelink;</span>
-<span class="fc" id="L57">    currlink.prevlink = swaplink;</span>
-<span class="fc" id="L58">    swaplink.nextlink = currlink;</span>
-<span class="fc" id="L59">    newforelink.prevlink = currlink;</span>
-<span class="fc" id="L60">  }</span>
+<span class="fc" id="L77">  }</span>
 
   public CharacterChain getScrambleChain() {
-<span class="fc" id="L63">    return chaintoscramble;</span>
+<span class="fc" id="L80">    return chaintoscramble;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

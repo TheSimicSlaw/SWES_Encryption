@@ -40,23 +40,40 @@ public class ChainScrambler {
     }
   }
 
-  private void transposeLink(CharacterChainLink currlink) {
+  private void transposeLink(CharacterChainLink currlink) { // NOPMD
     CharacterChainLink swaplink = currlink;
-    CharacterChainLink forelink = currlink.nextlink, aftlink = currlink.prevlink;
+    CharacterChainLink forelink, aftlink;
+
+    CharacterChainLink newforelink;
 
     int currlinkvalue = currlink.getCharValue();
     for (int i = 0; i < currlinkvalue; i++) {
-      swaplink = swaplink.nextlink;
+      forelink = currlink.nextlink;
+      swaplink = currlink.nextlink;
+      aftlink = currlink.prevlink;
+
+      newforelink = swaplink.nextlink;
+
+      aftlink.nextlink = swaplink;
+      swaplink.prevlink = aftlink;
+
+      // aftlink.nextlink = forelink;
+      // forelink.prevlink = aftlink;
+
+      currlink.nextlink = newforelink;
+      currlink.prevlink = swaplink;
+
+      swaplink.nextlink = currlink;
+      newforelink.prevlink = currlink;
+
+      if (chaintoscramble.isEndingLink(swaplink)) {
+        chaintoscramble.moveEndingLinkPointerForwards();
+      } else if (chaintoscramble.isBeginningLink(swaplink)) {
+        chaintoscramble.moveBeginningLinkPointerBackwards();
+      } else if (chaintoscramble.isBeginningLink(currlink)) {
+        chaintoscramble.swapBeginningAndEndingLinkPointers();
+      }
     }
-    CharacterChainLink newforelink = swaplink.nextlink;
-
-    aftlink.nextlink = forelink;
-    forelink.prevlink = aftlink;
-
-    currlink.nextlink = newforelink;
-    currlink.prevlink = swaplink;
-    swaplink.nextlink = currlink;
-    newforelink.prevlink = currlink;
   }
 
   public CharacterChain getScrambleChain() {

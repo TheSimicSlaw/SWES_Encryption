@@ -282,4 +282,9 @@ public class EncryptionTest {
 
     );
   }
+
+  // test if scrambles correct
+
+  // test for cases when the letter is moving to the end and to the start (work
+  // out on paper first)
 }
