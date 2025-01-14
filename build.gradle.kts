@@ -50,6 +50,7 @@ tasks.withType<JacocoReport> {
     classDirectories.setFrom(files(classDirectories.files.map {
       fileTree(it).apply {
         exclude("*/preview/*")
+        exclude("**/swesencryption/ManualTesting**")
       }
     }))
   }

@@ -7,17 +7,21 @@ public class CharacterChain {
   }
 
   public CharacterChain(String chainText) {
-    createChain(chainText);
+    createChain(chainText, false);
   }
 
-  public void createChain(String inText) throws RuntimeException {
+  public CharacterChain(String chainText, boolean isalphabetical) {
+    createChain(chainText, isalphabetical);
+  }
+
+  public void createChain(String inText, boolean isalphabetical) throws RuntimeException {
     checkExists();
     checkLength(inText);
-    begin = new CharacterChainLink(inText.charAt(0));
-    end = new CharacterChainLink(inText.charAt(inText.length() - 1));
+    begin = new CharacterChainLink(inText.charAt(0), isalphabetical);
+    end = new CharacterChainLink(inText.charAt(inText.length() - 1), isalphabetical);
     end.nextlink = begin;
     begin.prevlink = end;
-    fillChain(inText);
+    fillChain(inText, isalphabetical);
   }
 
   private void checkExists() {
@@ -35,17 +39,17 @@ public class CharacterChain {
     }
   }
 
-  private void fillChain(String inText) {
+  private void fillChain(String inText, boolean isalphabetical) {
     int secondToLast = inText.length() - 2;
     CharacterChainLink ccl = begin;
     CharacterChainLink newccl;
     for (int i = 1; i < secondToLast; i++) {
-      newccl = new CharacterChainLink(inText.charAt(i));
+      newccl = new CharacterChainLink(inText.charAt(i), isalphabetical);
       newccl.prevlink = ccl;
       ccl.nextlink = newccl;
       ccl = newccl;
     }
-    newccl = new CharacterChainLink(inText.charAt(secondToLast));
+    newccl = new CharacterChainLink(inText.charAt(secondToLast), isalphabetical);
     newccl.prevlink = ccl;
     ccl.nextlink = newccl;
     newccl.nextlink = end;
@@ -69,6 +73,10 @@ public class CharacterChain {
     return begin;
   }
 
+  public CharacterChainLink getEndingLink() {
+    return end;
+  }
+
   public boolean isEndingLink(CharacterChainLink inlink) {
     return inlink == end;
   }
@@ -78,14 +86,19 @@ public class CharacterChain {
   }
 
   public void moveEndingLinkPointerForwards() {
+    // System.out.println("Moving end pointer forwards...");
     end = end.nextlink;
+    // System.out.println("...Done moving end pointer forwards.");
   }
 
   public void moveBeginningLinkPointerBackwards() {
+    // System.out.println("Moving beginning link backwards...");
     begin = begin.prevlink;
+    // System.out.println("...Done moving beginning link backwards.");
   }
 
   public void swapBeginningAndEndingLinkPointers() {
+    // System.out.println("Swapping beginning and end...");
     begin = begin.nextlink;
     end = end.prevlink;
   }

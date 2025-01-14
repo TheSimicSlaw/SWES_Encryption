@@ -106,14 +106,15 @@ public class EncryptionTest {
   @Test
   public void secondCreateChainThrowsException() {
     CharacterChain characterChain = new CharacterChain("thisisthemessage");
-    RuntimeException exception = assertThrows(RuntimeException.class, () -> characterChain.createChain("new message"));
+    RuntimeException exception = assertThrows(RuntimeException.class,
+        () -> characterChain.createChain("new message", false));
     assertEquals("CharacterChain already exists.", exception.getMessage());
   }
 
   @Test
   public void createBlankChainThrowsException() {
     CharacterChain characterChain = new CharacterChain();
-    RuntimeException exception = assertThrows(RuntimeException.class, () -> characterChain.createChain(""));
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> characterChain.createChain("", false));
     assertEquals("You did not pass any text to createChain.", exception.getMessage());
   }
 
@@ -126,7 +127,7 @@ public class EncryptionTest {
   @Test
   public void createOneLinkChainThrowsException() {
     CharacterChain characterChain = new CharacterChain();
-    RuntimeException exception = assertThrows(RuntimeException.class, () -> characterChain.createChain("a"));
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> characterChain.createChain("a", false));
     assertEquals("Cannot create Character Chain with only one character.", exception.getMessage());
   }
 
@@ -285,6 +286,27 @@ public class EncryptionTest {
   }
 
   // test if scrambles correct
+  @Test
+  public void scrambleChainIsScrambledCorrectlyAlphabetical() {
+    assertAll(
+        () -> assertEquals((new ChainScrambler("honey", true)).returnScrambledChain(), "heyno"),
+        () -> assertEquals((new ChainScrambler("honex", true)).returnScrambledChain(), "hxeno"));
+  }
+
+  @Test
+  public void scrambleChainIsScrambledCorrectlyASCII() {
+    assertAll(
+        () -> assertEquals((new ChainScrambler("honey")).returnScrambledChain(), "heyno"),
+        () -> assertEquals((new ChainScrambler("honey", false)).returnScrambledChain(), "heyno"),
+        () -> assertEquals((new ChainScrambler("honex", false)).returnScrambledChain(), "hxeno"));
+  }
+
+  @Test
+  public void scrambleChainScramblesRegularly() {
+    ChainScrambler cs = new ChainScrambler("honey");
+    cs.scrambleChain();
+    assertEquals(cs.returnScrambledChain(), "heyno");
+  }
 
   // test for cases when the letter is moving to the end and to the start (work
   // out on paper first)

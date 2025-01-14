@@ -23,6 +23,23 @@ public class ChainScrambler {
     chainkeyforscrambling = inputchainkey;
   }
 
+  public ChainScrambler(String inputstring, boolean isalphabetical) {
+    if (isalphabetical) {
+      chaintoscramble = new CharacterChain(inputstring, true);
+      chainkeyforscrambling = new ChainKey(chaintoscramble);
+    } else {
+      chaintoscramble = new CharacterChain(inputstring);
+      chainkeyforscrambling = new ChainKey(chaintoscramble);
+    }
+  }
+
+  public String returnScrambledChain() {
+    if (!scrambled) {
+      scrambleChain();
+    }
+    return chaintoscramble.getChainText();
+  }
+
   public void scrambleChain() {
     if (scrambled) {
       throw new RuntimeException("This chain has already been scrambled.");
@@ -47,7 +64,11 @@ public class ChainScrambler {
     CharacterChainLink newforelink;
 
     int currlinkvalue = currlink.getCharValue();
+    // System.out.println("Char: " + currlink.getCharacter() + "\nCharVal: " +
+    // currlinkvalue);
     for (int i = 0; i < currlinkvalue; i++) {
+      // System.out.println(chaintoscramble.getChainText());
+
       forelink = currlink.nextlink;
       swaplink = currlink.nextlink;
       aftlink = currlink.prevlink;
@@ -68,12 +89,13 @@ public class ChainScrambler {
 
       if (chaintoscramble.isEndingLink(swaplink)) {
         chaintoscramble.moveEndingLinkPointerForwards();
-      } else if (chaintoscramble.isBeginningLink(swaplink)) {
-        chaintoscramble.moveBeginningLinkPointerBackwards();
-      } else if (chaintoscramble.isBeginningLink(currlink)) {
+      } else if (chaintoscramble.getBeginningLink().nextlink == chaintoscramble.getEndingLink()) {
         chaintoscramble.swapBeginningAndEndingLinkPointers();
+      } else if (chaintoscramble.isBeginningLink(currlink)) {
+        chaintoscramble.moveBeginningLinkPointerBackwards();
       }
     }
+    // System.out.println(chaintoscramble.getChainText() + "\n");
   }
 
   public CharacterChain getScrambleChain() {

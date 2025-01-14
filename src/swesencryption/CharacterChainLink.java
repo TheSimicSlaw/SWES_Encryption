@@ -7,15 +7,15 @@ public class CharacterChainLink {
   private int thisCharValue;
   CharacterChainLink prevlink, nextlink;
 
-  public CharacterChainLink(char character) {
-    thisChar = character;
-    // setValueAlphabet();
-    setValueASCII();
-  }
+  // public CharacterChainLink(char character) {
+  // thisChar = character;
+  // // setValueAlphabet();
+  // setValueASCII();
+  // }
 
-  public CharacterChainLink(char character, boolean alpha) {
+  public CharacterChainLink(char character, boolean isalphabetical) {
     thisChar = character;
-    if (alpha) {
+    if (isalphabetical) {
       setValueAlphabet();
     } else {
       setValueASCII();
@@ -35,6 +35,8 @@ public class CharacterChainLink {
 
   private void setValueASCII() {
     thisCharValue = (int) thisChar;
+    // if (thisCharValue >= (int) 'a')
+    // System.out.println("Setting value for " + thisChar + " to " + thisCharValue);
   }
 
   public char getCharacter() {
