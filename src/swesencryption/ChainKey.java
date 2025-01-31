@@ -86,6 +86,16 @@ public class ChainKey {
     return keyCharacterList;
   }
 
+  public String printKeyCount() {
+    String outKeyCountString = "";
+    for (Character character : keyCharacterList) {
+      // System.out.println(character + " " + keyMap.get(character));
+      outKeyCountString += character + " " + (keyMap.get(character).size() - 1) + "\n";
+    }
+    System.out.println(outKeyCountString);
+    return outKeyCountString;
+  }
+
   public ArrayList<ArrayList<CharacterChainLink>> getWorkableKey() {
     ArrayList<ArrayList<CharacterChainLink>> workableKey = new ArrayList<ArrayList<CharacterChainLink>>();
     for (Character keymember : keyCharacterList) {

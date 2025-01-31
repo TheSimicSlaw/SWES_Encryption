@@ -7,11 +7,11 @@ public class CharacterChainLink {
   private int thisCharValue;
   CharacterChainLink prevlink, nextlink;
 
-  // public CharacterChainLink(char character) {
-  // thisChar = character;
-  // // setValueAlphabet();
-  // setValueASCII();
-  // }
+  public CharacterChainLink(char character) {
+    thisChar = character;
+    // setValueAlphabet();
+    // setValueASCII();
+  }
 
   public CharacterChainLink(char character, boolean isalphabetical) {
     thisChar = character;

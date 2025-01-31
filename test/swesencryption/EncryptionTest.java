@@ -308,6 +308,18 @@ public class EncryptionTest {
     assertEquals(cs.returnScrambledChain(), "heyno");
   }
 
+  @Test
+  public void returnScrambledChainWithKeyReturnsCorrectly() {
+    ChainScrambler cs = new ChainScrambler("honey");
+    cs.scrambleChain();
+    assertEquals(cs.returnScrambledChainWithKey(), "h0e0y0n0o0");
+
+    cs = new ChainScrambler("sleeveless", true);
+    cs.scrambleChain();
+    assertEquals(cs.returnScrambledChainWithKey(), "s0e0l0e1v0l1e2s1e3s2");
+
+  }
+
   // test for cases when the letter is moving to the end and to the start (work
   // out on paper first)
 }

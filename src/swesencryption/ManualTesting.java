@@ -574,15 +574,18 @@ public class ManualTesting {
             " " + //
             "done in Convention by the Unanimous Consent of the States present the Seventeenth Day of September in the Year of our Lord one thousand seven hundred and Eighty seven and of the Independance of the United States of America the Twelfth In witness whereof We have hereunto subscribed our Names,");
 
+    // System.out.println(csSleeveless.returnScrambledChainWithKey());
+    System.out.println(csConstitution.returnScrambledChainWithKey());
+
     // csHoney.returnScrambledChain();
     // System.out.println("\n---\n");
     // csHonex.returnScrambledChain();
     // System.out.println("\n---\n");
     // csSleeveless.returnScrambledChain();
 
-    csConstitution.returnScrambledChain();
-    System.out.println(csConstitution.chainkeyforscrambling.getKeyCharacterList());
-    System.out.println(csConstitution.returnScrambledChain());
+    // csConstitution.returnScrambledChain();
+    // System.out.println(csConstitution.chainkeyforscrambling.getKeyCharacterList());
+    // System.out.println(csConstitution.returnScrambledChain());
     // System.out.println(ccConstitution.getChainText());
   }
 }
