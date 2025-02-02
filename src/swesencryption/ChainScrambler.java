@@ -81,7 +81,8 @@ public class ChainScrambler {
       temporaryLinkTwo.prevlink.nextlink = temporaryLinkTwo.nextlink;
     }
 
-    return output + "\n\n" + chainkeyforscrambling.printKeyCount();
+    // return output + "\n\n" + chainkeyforscrambling.printKeyCount();
+    return output;
   }
 
   public ArrayList<CharacterChainLink> integrateKey() {
@@ -90,8 +91,8 @@ public class ChainScrambler {
 
     for (ArrayList<CharacterChainLink> characterblock : workablekey) {
       for (int i = 0; i < characterblock.size(); i++) {
-        temporaryLink = new CharacterChainLink((" " + i).charAt(1)); // problem is that it gets first digit, so if i=123
-                                                                     // it counts it as 1
+        temporaryLink = new CharacterChainLink(i); // problem is that it gets first digit, so if i=123
+                                                   // it counts it as 1
 
         CharacterChainLink ccl = characterblock.get(i);
         CharacterChainLink cclnext = ccl.nextlink;

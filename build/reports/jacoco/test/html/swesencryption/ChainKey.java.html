@@ -86,13 +86,23 @@ public class ChainKey {
 <span class="fc" id="L86">    return keyCharacterList;</span>
   }
 
-  public ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt; getWorkableKey() {
-<span class="fc" id="L90">    ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt; workableKey = new ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt;();</span>
-<span class="fc bfc" id="L91" title="All 2 branches covered.">    for (Character keymember : keyCharacterList) {</span>
-<span class="fc" id="L92">      workableKey.add(keyMap.get(keymember));</span>
-<span class="fc" id="L93">    }</span>
+  public String printKeyCount() {
+<span class="fc" id="L90">    String outKeyCountString = &quot;&quot;;</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">    for (Character character : keyCharacterList) {</span>
+      // System.out.println(character + &quot; &quot; + keyMap.get(character));
+<span class="fc" id="L93">      outKeyCountString += character + &quot; &quot; + (keyMap.get(character).size() - 1) + &quot;\n&quot;;</span>
+<span class="fc" id="L94">    }</span>
+<span class="fc" id="L95">    System.out.println(outKeyCountString);</span>
+<span class="fc" id="L96">    return outKeyCountString;</span>
+  }
 
-<span class="fc" id="L95">    return workableKey;</span>
+  public ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt; getWorkableKey() {
+<span class="fc" id="L100">    ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt; workableKey = new ArrayList&lt;ArrayList&lt;CharacterChainLink&gt;&gt;();</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">    for (Character keymember : keyCharacterList) {</span>
+<span class="fc" id="L102">      workableKey.add(keyMap.get(keymember));</span>
+<span class="fc" id="L103">    }</span>
+
+<span class="fc" id="L105">    return workableKey;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

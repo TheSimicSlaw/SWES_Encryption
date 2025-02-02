@@ -63,7 +63,7 @@ public class CharacterChain {
     String out = "";
     CharacterChainLink ccl = begin;
     do {
-      out += ccl.getCharacter();
+      out += ccl.getOutput();
       ccl = ccl.nextlink;
     } while (ccl != begin);
     return out;

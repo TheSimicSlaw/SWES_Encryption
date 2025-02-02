@@ -7,10 +7,17 @@ public class CharacterChainLink {
   private int thisCharValue;
   CharacterChainLink prevlink, nextlink;
 
+  private boolean isDummy = false;
+
   public CharacterChainLink(char character) {
     thisChar = character;
     // setValueAlphabet();
     // setValueASCII();
+  }
+
+  public CharacterChainLink(int num) {
+    isDummy = true;
+    thisCharValue = num;
   }
 
   public CharacterChainLink(char character, boolean isalphabetical) {
@@ -45,6 +52,13 @@ public class CharacterChainLink {
 
   public int getCharValue() {
     return thisCharValue;
+  }
+
+  public String getOutput() {
+    if (isDummy) {
+      return "" + thisCharValue;
+    }
+    return "" + thisChar;
   }
 
   public boolean modifyCharacterValue(Function<Double, Double> thisFunction) { // change to modifyCharacterValue

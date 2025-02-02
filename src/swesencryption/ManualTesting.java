@@ -574,8 +574,17 @@ public class ManualTesting {
             " " + //
             "done in Convention by the Unanimous Consent of the States present the Seventeenth Day of September in the Year of our Lord one thousand seven hundred and Eighty seven and of the Independance of the United States of America the Twelfth In witness whereof We have hereunto subscribed our Names,");
 
-    // System.out.println(csSleeveless.returnScrambledChainWithKey());
-    System.out.println(csConstitution.returnScrambledChainWithKey());
+    System.out.println(
+        csSleeveless.returnScrambledChainWithKey() + "\n\n" + csSleeveless.chainkeyforscrambling.printKeyCount());
+    // System.out.println(
+    // csConstitution.returnScrambledChainWithKey() + "\n\nstart key count:\n.."
+    // + csConstitution.chainkeyforscrambling.printKeyCount()
+    // + "\n.. 4578\n\" 9\n' 0\n( 4\n) 4\n, 380\n- 11\n. 143\n0 0\n1 4\n2 3\n3 3\n4
+    // 2\n5 0\n6 0\n7 0\n8 0\n9 0\n: 7\n; 63\nA 79\nB 26\nC 158\nD 32\nE 45\nF 9\nG
+    // 6\nH 33\nI 52\nJ 22\nK 0\nL 67\nM 52\nN 44\nO 47\nP 132\nQ 3\nR 61\nS 217\nT
+    // 114\nU 62\nV 32\nW 21\nY 23\na 1515\nb 333\nc 533\nd 692\ne 2921\nf 593\ng
+    // 254\nh 1194\ni 1338\nj 25\nk 30\nl 823\nm 361\nn 1497\no 1506\np 266\nq 24\nr
+    // 1177\ns 1343\nt 2081\nu 474\nv 218\nw 199\nx 63\ny 263\nz 15");
 
     // csHoney.returnScrambledChain();
     // System.out.println("\n---\n");
@@ -587,5 +596,9 @@ public class ManualTesting {
     // System.out.println(csConstitution.chainkeyforscrambling.getKeyCharacterList());
     // System.out.println(csConstitution.returnScrambledChain());
     // System.out.println(ccConstitution.getChainText());
+
+    // ChainScrambler cs = new ChainScrambler("honey");
+    // cs.scrambleChain();
+    // System.out.println(cs.returnScrambledChainWithKey() + " : h0e0y0n0o0");
   }
 }
