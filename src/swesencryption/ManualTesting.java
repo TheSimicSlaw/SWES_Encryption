@@ -2,6 +2,17 @@ package swesencryption;
 
 public class ManualTesting {
   public static void main(String[] args) {
+    // String outTest = "..";
+    // char testDEL = (char) 127;
+    // outTest += testDEL;
+    // outTest += "..";
+    // System.out.println(outTest);
+    // System.out
+    // .println((int) outTest.charAt(0) + " " + (int) outTest.charAt(1) + "_" +
+    // (int) outTest.charAt(2) + "_"
+    // + (int) outTest.charAt(3)
+    // + " " + (int) outTest.charAt(4));
+
     ChainScrambler csHoney = new ChainScrambler("honey", true);
     ChainScrambler csHonex = new ChainScrambler("honex", true);
     ChainScrambler csSleeveless = new ChainScrambler("sleeveless", true);
@@ -574,8 +585,8 @@ public class ManualTesting {
             " " + //
             "done in Convention by the Unanimous Consent of the States present the Seventeenth Day of September in the Year of our Lord one thousand seven hundred and Eighty seven and of the Independance of the United States of America the Twelfth In witness whereof We have hereunto subscribed our Names,");
 
-    System.out.println(
-        csSleeveless.returnScrambledChainWithKey() + "\n\n" + csSleeveless.chainkeyforscrambling.printKeyCount());
+    // System.out.println(csSleeveless.returnScrambledChainWithKey() + "\n\n" +
+    // csSleeveless.chainkeyforscrambling.printKeyCount());
     // System.out.println(
     // csConstitution.returnScrambledChainWithKey() + "\n\nstart key count:\n.."
     // + csConstitution.chainkeyforscrambling.printKeyCount()

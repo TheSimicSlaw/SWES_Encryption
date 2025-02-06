@@ -39,12 +39,21 @@ public class CharacterChain {
     }
   }
 
+  private void checkValidCharacter(char c) {
+    if (c > 127) {
+      throw new RuntimeException("Character \'" + c + "\' is not a valid character.");
+    }
+  }
+
   private void fillChain(String inText, boolean isalphabetical) {
     int secondToLast = inText.length() - 2;
+    char charat;
     CharacterChainLink ccl = begin;
     CharacterChainLink newccl;
     for (int i = 1; i < secondToLast; i++) {
-      newccl = new CharacterChainLink(inText.charAt(i), isalphabetical);
+      charat = inText.charAt(i);
+      checkValidCharacter(charat);
+      newccl = new CharacterChainLink(charat, isalphabetical);
       newccl.prevlink = ccl;
       ccl.nextlink = newccl;
       ccl = newccl;

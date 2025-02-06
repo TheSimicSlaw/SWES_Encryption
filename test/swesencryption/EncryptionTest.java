@@ -16,7 +16,6 @@ public class EncryptionTest {
 
   @BeforeEach
   public void init() {
-
   }
 
   @Test
@@ -310,12 +309,19 @@ public class EncryptionTest {
 
   @Test
   public void returnScrambledChainWithKeyReturnsCorrectly() {
+    char DEL = (char) 127;
+
     ChainScrambler cs = new ChainScrambler("honey");
     cs.scrambleChain();
-    assertEquals(cs.returnScrambledChainWithKey(), "h0e0y0n0o0");
+    String h0e0y0n0o0 = "h" + DEL + "0" + DEL + "e" + DEL + "0" + DEL + "y" + DEL + "0" + DEL + "n" + DEL + "0" + DEL
+        + "o" + DEL + "0" + DEL;
+    assertEquals(cs.returnScrambledChainWithKey(), h0e0y0n0o0);
 
+    String s0e0l0e1v0l1e2s1e3s2 = "s" + DEL + "0" + DEL + "e" + DEL + "0" + DEL + "l" + DEL + "0" + DEL + "e" + DEL
+        + "1" + DEL + "v" + DEL + "0" + DEL + "l" + DEL + "1" + DEL + "e" + DEL + "2" + DEL + "s" + DEL + "1" + DEL
+        + "e" + DEL + "3" + DEL + "s" + DEL + "2" + DEL;
     cs = new ChainScrambler("sleeveless", true);
-    assertEquals(cs.returnScrambledChainWithKey(), "s0e0l0e1v0l1e2s1e3s2");
+    assertEquals(cs.returnScrambledChainWithKey(), s0e0l0e1v0l1e2s1e3s2);
 
   }
 

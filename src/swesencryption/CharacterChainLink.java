@@ -56,7 +56,7 @@ public class CharacterChainLink {
 
   public String getOutput() {
     if (isDummy) {
-      return "" + thisCharValue;
+      return "" + ((char) 127) + thisCharValue + ((char) 127);
     }
     return "" + thisChar;
   }
