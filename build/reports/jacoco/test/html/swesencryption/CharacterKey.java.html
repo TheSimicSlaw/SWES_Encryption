@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CharacterKey.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SWES_Encryption</a> &gt; <a href="index.source.html" class="el_package">swesencryption</a> &gt; <span class="el_source">CharacterKey.java</span></div><h1>CharacterKey.java</h1><pre class="source lang-java linenums">package swesencryption;
+
+import java.util.HashMap;
+
+// Now marks characters as char-DEL-num-DEL to make the count number easier to distinguish
+// Added CharacterKey, which is programmed with the numerical equivalents of the characters and will handle value increases during the substitution step
+// Added CharacterSubstitutor, which handles the actual substitution step
+// Still need to integrate CharacterChainLink and CharacterKey
+
+public class CharacterKey {
+  private HashMap&lt;Character, Integer&gt; charMap;
+
+<span class="nc" id="L13">  public CharacterKey(int[] vals) { // NOPMD</span>
+    // assumes using only ASCII characters [SPACE] until [DEL]
+<span class="nc bnc" id="L15" title="All 2 branches missed.">    if (vals.length != 95) {</span>
+<span class="nc" id="L16">      throw new RuntimeException(&quot;You tried to create a CharacterKey with the incorrect number of characters. You had &quot;</span>
+          + vals.length + &quot; characters.&quot;);
+    }
+    char i_char;
+<span class="nc bnc" id="L20" title="All 2 branches missed.">    for (int i = 0; i &lt; 32; i++) {</span>
+<span class="nc" id="L21">      i_char = (char) i;</span>
+<span class="nc" id="L22">      charMap.put(i_char, 0);</span>
+    }
+<span class="nc bnc" id="L24" title="All 2 branches missed.">    for (int i = 32; i &lt; 127; i++) {</span>
+<span class="nc" id="L25">      i_char = (char) i;</span>
+<span class="nc" id="L26">      charMap.put(i_char, vals[i]);</span>
+    }
+<span class="nc" id="L28">    i_char = (char) 127;</span>
+<span class="nc" id="L29">    charMap.put(i_char, 0);</span>
+<span class="nc" id="L30">  }</span>
+
+  public int getCharacterKeyValue(char inChar) {
+<span class="nc" id="L33">    return charMap.get(inChar);</span>
+  }
+
+  public void substitutionStepValIncrease(int substitutorval) { // substitution step includes looping each
+    char c;
+<span class="nc bnc" id="L38" title="All 2 branches missed.">    for (int i = 32; i &lt; 127; i++) {</span>
+<span class="nc" id="L39">      c = (char) i;</span>
+<span class="nc" id="L40">      charMap.put(c, charMap.get(c) + substitutorval);</span>
+    }
+<span class="nc" id="L42">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

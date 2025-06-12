@@ -7,7 +7,7 @@ public class CharacterSubstitutor {
     // charkey = ck;
   }
 
-  public void substitutionStepTextForwards(int substitutorval, String text) {
+  public void substitutionStepTextForwards(int substitutorval, String text) { // NOPMD
     int len = text.length();
     char charAt;
     int charIntAt;

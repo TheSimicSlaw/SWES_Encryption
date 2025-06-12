@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="swesencryption.EncryptionTest" tests="31" skipped="0" failures="0" errors="0" timestamp="2025-01-31T23:47:02" hostname="SHALOMCHAVERIM" time="0.36">
+<testsuite name="swesencryption.EncryptionTest" tests="31" skipped="0" failures="0" errors="0" timestamp="2025-06-12T01:00:25" hostname="SHALOMCHAVERIM" time="0.295">
   <properties/>
-  <testcase name="createBlankChainInConstructorThrowsException()" classname="swesencryption.EncryptionTest" time="0.08"/>
-  <testcase name="modifyCharacterReturns71For69Plus2()" classname="swesencryption.EncryptionTest" time="0.008"/>
+  <testcase name="createBlankChainInConstructorThrowsException()" classname="swesencryption.EncryptionTest" time="0.072"/>
+  <testcase name="modifyCharacterReturns71For69Plus2()" classname="swesencryption.EncryptionTest" time="0.005"/>
   <testcase name="endingLinkIsConnectedToBeginning()" classname="swesencryption.EncryptionTest" time="0.002"/>
-  <testcase name="blankCharacterChainGivesBlankString()" classname="swesencryption.EncryptionTest" time="0.002"/>
-  <testcase name="modifyCharacterReturns99For101Minus2()" classname="swesencryption.EncryptionTest" time="0.004"/>
+  <testcase name="blankCharacterChainGivesBlankString()" classname="swesencryption.EncryptionTest" time="0.001"/>
+  <testcase name="modifyCharacterReturns99For101Minus2()" classname="swesencryption.EncryptionTest" time="0.002"/>
   <testcase name="canary()" classname="swesencryption.EncryptionTest" time="0.002"/>
-  <testcase name="scrambleChainThrowsNoExceptions()" classname="swesencryption.EncryptionTest" time="0.033"/>
+  <testcase name="scrambleChainThrowsNoExceptions()" classname="swesencryption.EncryptionTest" time="0.021"/>
   <testcase name="abcdeGetBeginningLinkReturnsA()" classname="swesencryption.EncryptionTest" time="0.001"/>
-  <testcase name="createOneLinkChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.004"/>
-  <testcase name="modifyCharacterReturnsFalseForInvalidOptionNegative()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="characterChainIsCorrectForStringThisIsTheMessage()" classname="swesencryption.EncryptionTest" time="0.004"/>
-  <testcase name="characterChainIsCorrectForStringThisisthemessage()" classname="swesencryption.EncryptionTest" time="0.001"/>
-  <testcase name="scrambleChainIsScrambledCorrectlyASCII()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="setAlphaCharacterToNonAlphabetCharacterReturns0()" classname="swesencryption.EncryptionTest" time="0.005"/>
-  <testcase name="scrambleChainScramblesRegularly()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="modifyAlphaCharacterReturnsFalseForInvalidOptionDivide()" classname="swesencryption.EncryptionTest" time="0.004"/>
-  <testcase name="checkPrintKeyCountReturnsCorrectly()" classname="swesencryption.EncryptionTest" time="0.078"/>
+  <testcase name="createOneLinkChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="modifyCharacterReturnsFalseForInvalidOptionNegative()" classname="swesencryption.EncryptionTest" time="0.001"/>
+  <testcase name="characterChainIsCorrectForStringThisIsTheMessage()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="characterChainIsCorrectForStringThisisthemessage()" classname="swesencryption.EncryptionTest" time="0.0"/>
+  <testcase name="scrambleChainIsScrambledCorrectlyASCII()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="setAlphaCharacterToNonAlphabetCharacterReturns0()" classname="swesencryption.EncryptionTest" time="0.003"/>
+  <testcase name="scrambleChainScramblesRegularly()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="modifyAlphaCharacterReturnsFalseForInvalidOptionDivide()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="checkPrintKeyCountReturnsCorrectly()" classname="swesencryption.EncryptionTest" time="0.052"/>
   <testcase name="createOneLinkChainInConstructorThrowsException()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="chainKeyReturnsCorrectHashmap()" classname="swesencryption.EncryptionTest" time="0.028"/>
-  <testcase name="modifyAlphaCharacterReturns3For5Minus2()" classname="swesencryption.EncryptionTest" time="0.001"/>
+  <testcase name="chainKeyReturnsCorrectHashmap()" classname="swesencryption.EncryptionTest" time="0.012"/>
+  <testcase name="modifyAlphaCharacterReturns3For5Minus2()" classname="swesencryption.EncryptionTest" time="0.002"/>
   <testcase name="modifyAlphaCharacterReturns7For5Plus2()" classname="swesencryption.EncryptionTest" time="0.002"/>
-  <testcase name="returnScrambledChainWithKeyReturnsCorrectly()" classname="swesencryption.EncryptionTest" time="0.003"/>
+  <testcase name="returnScrambledChainWithKeyReturnsCorrectly()" classname="swesencryption.EncryptionTest" time="0.047"/>
   <testcase name="beginningLinkIsConnectedToEnd()" classname="swesencryption.EncryptionTest" time="0.001"/>
-  <testcase name="chainScramblerThrowsExceptionIfScrambledMoreThanOnce()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="getScrambleChainReturnsScrambleChain()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="chainKeyCreatesCorrectKeyCharacterList()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="scrambleChainIsScrambledCorrectlyAlphabetical()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="modifyAlphaCharacterReturnsFalseForInvalidOptionNegative()" classname="swesencryption.EncryptionTest" time="0.003"/>
-  <testcase name="createBlankChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.002"/>
-  <testcase name="secondCreateChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.001"/>
+  <testcase name="chainScramblerThrowsExceptionIfScrambledMoreThanOnce()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="getScrambleChainReturnsScrambleChain()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="chainKeyCreatesCorrectKeyCharacterList()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="scrambleChainIsScrambledCorrectlyAlphabetical()" classname="swesencryption.EncryptionTest" time="0.002"/>
+  <testcase name="modifyAlphaCharacterReturnsFalseForInvalidOptionNegative()" classname="swesencryption.EncryptionTest" time="0.001"/>
+  <testcase name="createBlankChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.001"/>
+  <testcase name="secondCreateChainThrowsException()" classname="swesencryption.EncryptionTest" time="0.002"/>
   <testcase name="modifyCharacterReturnsFalseForInvalidOptionDivide()" classname="swesencryption.EncryptionTest" time="0.001"/>
   <system-out><![CDATA[  4578
 " 9

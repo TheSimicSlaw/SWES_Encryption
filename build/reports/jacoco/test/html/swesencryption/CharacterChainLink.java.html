@@ -56,7 +56,7 @@ public class CharacterChainLink {
 
   public String getOutput() {
 <span class="fc bfc" id="L58" title="All 2 branches covered.">    if (isDummy) {</span>
-<span class="fc" id="L59">      return &quot;&quot; + thisCharValue;</span>
+<span class="fc" id="L59">      return &quot;&quot; + ((char) 127) + thisCharValue + ((char) 127);</span>
     }
 <span class="fc" id="L61">    return &quot;&quot; + thisChar;</span>
   }

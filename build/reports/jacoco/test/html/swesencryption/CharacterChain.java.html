@@ -39,68 +39,77 @@ public class CharacterChain {
     }
 <span class="fc" id="L40">  }</span>
 
-  private void fillChain(String inText, boolean isalphabetical) {
-<span class="fc" id="L43">    int secondToLast = inText.length() - 2;</span>
-<span class="fc" id="L44">    CharacterChainLink ccl = begin;</span>
-    CharacterChainLink newccl;
-<span class="fc bfc" id="L46" title="All 2 branches covered.">    for (int i = 1; i &lt; secondToLast; i++) {</span>
-<span class="fc" id="L47">      newccl = new CharacterChainLink(inText.charAt(i), isalphabetical);</span>
-<span class="fc" id="L48">      newccl.prevlink = ccl;</span>
-<span class="fc" id="L49">      ccl.nextlink = newccl;</span>
-<span class="fc" id="L50">      ccl = newccl;</span>
+  private void checkValidCharacter(char c) {
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">    if (c &gt; 127) {</span>
+<span class="nc" id="L44">      throw new RuntimeException(&quot;Character \'&quot; + c + &quot;\' is not a valid character.&quot;);</span>
     }
-<span class="fc" id="L52">    newccl = new CharacterChainLink(inText.charAt(secondToLast), isalphabetical);</span>
-<span class="fc" id="L53">    newccl.prevlink = ccl;</span>
-<span class="fc" id="L54">    ccl.nextlink = newccl;</span>
-<span class="fc" id="L55">    newccl.nextlink = end;</span>
-<span class="fc" id="L56">    end.prevlink = newccl;</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L46">  }</span>
+
+  private void fillChain(String inText, boolean isalphabetical) {
+<span class="fc" id="L49">    int secondToLast = inText.length() - 2;</span>
+    char charat;
+<span class="fc" id="L51">    CharacterChainLink ccl = begin;</span>
+    CharacterChainLink newccl;
+<span class="fc bfc" id="L53" title="All 2 branches covered.">    for (int i = 1; i &lt; secondToLast; i++) {</span>
+<span class="fc" id="L54">      charat = inText.charAt(i);</span>
+<span class="fc" id="L55">      checkValidCharacter(charat);</span>
+<span class="fc" id="L56">      newccl = new CharacterChainLink(charat, isalphabetical);</span>
+<span class="fc" id="L57">      newccl.prevlink = ccl;</span>
+<span class="fc" id="L58">      ccl.nextlink = newccl;</span>
+<span class="fc" id="L59">      ccl = newccl;</span>
+    }
+<span class="fc" id="L61">    newccl = new CharacterChainLink(inText.charAt(secondToLast), isalphabetical);</span>
+<span class="fc" id="L62">    newccl.prevlink = ccl;</span>
+<span class="fc" id="L63">    ccl.nextlink = newccl;</span>
+<span class="fc" id="L64">    newccl.nextlink = end;</span>
+<span class="fc" id="L65">    end.prevlink = newccl;</span>
+<span class="fc" id="L66">  }</span>
 
   public String getChainText() {
-<span class="fc bfc" id="L60" title="All 2 branches covered.">    if (begin == null) {</span>
-<span class="fc" id="L61">      return &quot;&quot;;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">    if (begin == null) {</span>
+<span class="fc" id="L70">      return &quot;&quot;;</span>
     }
-<span class="fc" id="L63">    String out = &quot;&quot;;</span>
-<span class="fc" id="L64">    CharacterChainLink ccl = begin;</span>
+<span class="fc" id="L72">    String out = &quot;&quot;;</span>
+<span class="fc" id="L73">    CharacterChainLink ccl = begin;</span>
     do {
-<span class="fc" id="L66">      out += ccl.getOutput();</span>
-<span class="fc" id="L67">      ccl = ccl.nextlink;</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">    } while (ccl != begin);</span>
-<span class="fc" id="L69">    return out;</span>
+<span class="fc" id="L75">      out += ccl.getOutput();</span>
+<span class="fc" id="L76">      ccl = ccl.nextlink;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">    } while (ccl != begin);</span>
+<span class="fc" id="L78">    return out;</span>
   }
 
   public CharacterChainLink getBeginningLink() {
-<span class="fc" id="L73">    return begin;</span>
+<span class="fc" id="L82">    return begin;</span>
   }
 
   public CharacterChainLink getEndingLink() {
-<span class="fc" id="L77">    return end;</span>
+<span class="fc" id="L86">    return end;</span>
   }
 
   public boolean isEndingLink(CharacterChainLink inlink) {
-<span class="fc bfc" id="L81" title="All 2 branches covered.">    return inlink == end;</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">    return inlink == end;</span>
   }
 
   public boolean isBeginningLink(CharacterChainLink inlink) {
-<span class="fc bfc" id="L85" title="All 2 branches covered.">    return inlink == begin;</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">    return inlink == begin;</span>
   }
 
   public void moveEndingLinkPointerForwards() {
     // System.out.println(&quot;Moving end pointer forwards...&quot;);
-<span class="fc" id="L90">    end = end.nextlink;</span>
+<span class="fc" id="L99">    end = end.nextlink;</span>
     // System.out.println(&quot;...Done moving end pointer forwards.&quot;);
-<span class="fc" id="L92">  }</span>
+<span class="fc" id="L101">  }</span>
 
   public void moveBeginningLinkPointerBackwards() {
     // System.out.println(&quot;Moving beginning link backwards...&quot;);
-<span class="fc" id="L96">    begin = begin.prevlink;</span>
+<span class="fc" id="L105">    begin = begin.prevlink;</span>
     // System.out.println(&quot;...Done moving beginning link backwards.&quot;);
-<span class="fc" id="L98">  }</span>
+<span class="fc" id="L107">  }</span>
 
   public void swapBeginningAndEndingLinkPointers() {
     // System.out.println(&quot;Swapping beginning and end...&quot;);
-<span class="fc" id="L102">    begin = begin.nextlink;</span>
-<span class="fc" id="L103">    end = end.prevlink;</span>
-<span class="fc" id="L104">  }</span>
+<span class="fc" id="L111">    begin = begin.nextlink;</span>
+<span class="fc" id="L112">    end = end.prevlink;</span>
+<span class="fc" id="L113">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

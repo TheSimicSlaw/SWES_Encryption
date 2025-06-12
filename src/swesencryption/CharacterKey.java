@@ -10,7 +10,8 @@ import java.util.HashMap;
 public class CharacterKey {
   private HashMap<Character, Integer> charMap;
 
-  public CharacterKey(int[] vals) { // assumes using only ASCII characters [SPACE] until [DEL]
+  public CharacterKey(int[] vals) { // NOPMD
+    // assumes using only ASCII characters [SPACE] until [DEL]
     if (vals.length != 95) {
       throw new RuntimeException("You tried to create a CharacterKey with the incorrect number of characters. You had "
           + vals.length + " characters.");

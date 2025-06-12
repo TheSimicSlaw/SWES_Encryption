@@ -597,6 +597,10 @@ public class ManualTesting {
     // 254\nh 1194\ni 1338\nj 25\nk 30\nl 823\nm 361\nn 1497\no 1506\np 266\nq 24\nr
     // 1177\ns 1343\nt 2081\nu 474\nv 218\nw 199\nx 63\ny 263\nz 15");
 
+    // System.out.println(csConstitution.returnScrambledChainWithKey() + "\n\nstart
+    // key count:\n.."
+    // + csConstitution.chainkeyforscrambling.printKeyCount());
+
     // csHoney.returnScrambledChain();
     // System.out.println("\n---\n");
     // csHonex.returnScrambledChain();
