@@ -41,7 +41,7 @@ public class CharacterChain {
 
   private void checkValidCharacter(char c) {
     if (c > 127) {
-      throw new RuntimeException("Character \'" + c + "\' is not a valid character.");
+      throw new RuntimeException("Character with val " + (int) c + " is not a valid character.");
     }
   }
 

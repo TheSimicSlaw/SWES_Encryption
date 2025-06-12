@@ -40,8 +40,8 @@ public class CharacterChain {
 <span class="fc" id="L40">  }</span>
 
   private void checkValidCharacter(char c) {
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">    if (c &gt; 127) {</span>
-<span class="nc" id="L44">      throw new RuntimeException(&quot;Character \'&quot; + c + &quot;\' is not a valid character.&quot;);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">    if (c &gt; 127) {</span>
+<span class="fc" id="L44">      throw new RuntimeException(&quot;Character with val &quot; + (int) c + &quot; is not a valid character.&quot;);</span>
     }
 <span class="fc" id="L46">  }</span>
 
