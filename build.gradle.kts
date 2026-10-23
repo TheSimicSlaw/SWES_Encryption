@@ -35,7 +35,7 @@ sourceSets {
   }
 }
 
-val test by tasks.getting(Test::class) {
+val test = tasks.getByName<Test>("test") {
 	useJUnitPlatform {}
 }
 
